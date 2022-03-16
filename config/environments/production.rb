@@ -92,17 +92,17 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 #  config.action_mailer.delivery_method = :mailjet #_api
-  config.action_mailer.perform_deliveries = true
+#  config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { :host => 'new-catshop-test.herokuapp.com' }
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              'in-v3.mailjet.com',
-    port:                 587,
-    domain:               'https://new-catshop-test.herokuapp.com/',
-    user_name:            ENV['MAILJET_LOGIN'],
-    password:             ENV['MAILJET_PWD'],
-    authentication:       'plain',
-    enable_starttls_auto: true  }
+#  config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+#    address:              'in-v3.mailjet.com',
+#    port:                 587,
+#    domain:               'https://new-catshop-test.herokuapp.com/',
+#    user_name:            ENV['MAILJET_LOGIN'],
+#    password:             ENV['MAILJET_PWD'],
+#    authentication:       'plain',
+#    enable_starttls_auto: true  }
 
   end
