@@ -32,15 +32,27 @@ Rails.application.configure do
 
   #mailer local delivery
   #config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :mailjet_api
+  config.action_mailer.delivery_method = :mailjet
 
+  config.action_mailer.perform_deliveries = true
+
+  #config.action_mailer.default_url_options = { :host => 'new-catshop-test.herokuapp.com' }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'in-v3.mailjet.com',
+    port:                 587,
+    domain:               'https://new-catshop-test.herokuapp.com/',
+    user_name:            ENV['MAILJET_LOGIN'],
+    password:             ENV['MAILJET_PWD'],
+    authentication:       'plain',
+    enable_starttls_auto: true  }
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -67,4 +79,6 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+
 end
