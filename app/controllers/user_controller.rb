@@ -1,6 +1,6 @@
 class UserController < ApplicationController
 
-after_action :welcome_email, only: [:create]
+after_action :welcome_email
 
   def show
     @user = User.find(current_user.id)
