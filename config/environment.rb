@@ -7,7 +7,7 @@ Rails.application.initialize!
 ActionMailer::Base.smtp_settings = {
   :user_name => ENV['MAILJET_LOGIN'],
   :password => ENV['MAILJET_PWD'],
-  :domain => 'https://catshop-io.herokuapp.com/',
+  :domain => 'https://new-catshop-test.herokuapp.com/',
   :address => 'in-v3.mailjet.com',
   :port => 587,
   :authentication => :plain,
