@@ -1,0 +1,95 @@
+<%@cart.join_table_cart_items.each do |item| %>
+
+<p><%=item.item.title%></p>
+<p><%=item.item.description%></p>
+<p><%=item.inspect%></p>
+<p><%=item.item.price%></p>
+
+
+
+<%= button_to "Delete to cart", jointablecartitem_path(item.id), params: {cart_id: params[:id]}, method: :delete, confirm: "Êtes-vous sûr de vouloir supprimer l'article ?", class: "btn btn-card"%><br>
+
+<!--<%= button_to "Delete to cart", jointablecartitem_path(item.id), params: {cart_id: params[:id]}, method: :put, class: "btn btn-card"%><br>-->
+
+
+
+
+
+<%end%>
+
+<%=@total%>
+
+<%= button_to "Delete to cart", cart_path(params[:id]), method: :put, confirm: "Êtes-vous sûr de vouloir vider le panier ?", class: "btn btn-card"%><br>
+
+
+<%= button_to "create order", orders_path, method: :post, confirm: "Êtes-vous sûr de vouloir creer order ?", class: "btn btn-card"%><br>
+
+<div class="container">
+    <div class="header-cart">
+        <ul id="ulcart"class="d-flex flex-wrap align-items-center justify-content-center ">
+            <li class="me-3"><img src="https://iconarchive.com/download/i78686/iconka/meow-2/cat-gift.ico" alt=""></li>
+            <li class="me-3"><h3>This is your Cat-Cart </h3></li>
+            <li class="me-3"><img src="https://iconarchive.com/download/i78686/iconka/meow-2/cat-gift.ico" alt=""></li>
+        </ul>
+        
+    
+    </div>
+</div>
+
+<div class="container">
+
+
+        <table class="table tablecart">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Item Name</th>
+                <th scope="col">Item Description</th>
+                <th scope="col"></th>
+                <th scope="col">Price</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <%@cart.join_table_cart_items.each do |item| %>
+            <tr>
+                <th scope="row"><%= button_to "Remove", jointablecartitem_path(item.id), params: {cart_id: params[:id]}, method: :delete, confirm: "Êtes-vous sûr de vouloir supprimer l'article ?", class: "btn btn-destroy"%><br></th>
+                <td><%=item.item.title%></td>
+                <td><%=item.item.description%></td>
+                <td></td>
+                <td><%=item.item.price%></td>
+            </tr>
+            <%end%>
+            </tbody>
+            <thead>
+                <tr>
+                    <th scope="col"><%= button_to "Delete cart", cart_path(params[:id]), method: :put, confirm: "Êtes-vous sûr de vouloir vider le panier ?", class: "btn btn-destroy"%><br></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col">Total Price :</th>
+                    <th scope="col"><%=@total%></th>
+                </tr>
+            </thead>
+        </table>
+        
+            <div class="order-btn text-center">
+                <form action="<%=orders_path%>" method="POST">
+                 <div class="container text-center ">
+            <button type="submit" class="btn btn-primary">Buy Now</button>
+
+        </div>
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-amount= "<%=@stripe_amount%>"
+                data-description="Place order"
+                data-locale="auto">
+            </script>
+            <script>
+                // Hide default stripe button, be careful there if you
+                // have more than 1 button of that class
+                document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+            </script>
+       
+        </form>
+    </div>
+</div>
