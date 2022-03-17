@@ -9,7 +9,7 @@ class Order < ApplicationRecord
   after_create :order_send
 
   def order_send
-    UserMailer.email_order(current_user).deliver_now
+    UserMailer.email_order(self).deliver_now
   end
 
 

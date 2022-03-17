@@ -8,7 +8,7 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Welcome to CatShop')
   end
 
-  def email_order(user)
+  def email_order(order)
     @cart = user.cart
     @amount = @cart.total
     @user = user
