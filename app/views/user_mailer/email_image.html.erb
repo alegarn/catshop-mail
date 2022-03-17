@@ -12,7 +12,7 @@
     <br>
     This is your image
     <br>
-    <img src="<%= image_tag("#{@order.item.image_url}") %>" alt="">
+    <%= image_tag("#{@order.item.image_url}") %>
   </p>
   <p>
     You can connect on: <%= @url %>.
