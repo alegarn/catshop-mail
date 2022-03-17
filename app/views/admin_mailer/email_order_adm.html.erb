@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h1> <%= @user.first_name %></h1>
+
+  <p>Ordered: <% @order.items.each do |item| %>
+    <br>
+    - <%= item.title %> This is your image
+    <br>
+    <img src="<%= item.image_url %>" alt="">
+
+    <% end %>
+  </p>
+  <p>
+    - Paid <%= @order.total %> EUR.
+  </p>
+
+</body>
+</html>

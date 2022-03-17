@@ -7,10 +7,15 @@ class Order < ApplicationRecord
   #total of the prices?
 
   after_create :order_send
+  after_create :order_send_adm
+
 
   def order_send
     UserMailer.email_order(self).deliver_now
   end
 
+  def order_send_adm
+    AdminMailer.email_order_adm(self).deliver_now
+  end
 
 end

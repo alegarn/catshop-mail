@@ -11,7 +11,11 @@ class CartController < ApplicationController
 
     updatecart()
 
-    redirect_to cart_path(params[:id])
+    respond_to do |format|
+      format.html { redirect_to cart_path(params[:cart_id]) }
+      format.js { }
+    end
+
   end
 
   private
@@ -19,7 +23,7 @@ class CartController < ApplicationController
   def updatecart
     @cart = Cart.find(params[:id])
     @article = @cart.join_table_cart_items
-    
+
     @article.each do |item|
       item.destroy
     end
@@ -36,7 +40,7 @@ class CartController < ApplicationController
     cartitem_params = params.require(:join_table_cart_items).permit(:quantity)
   end
 
-  def total 
+  def total
     @cart = Cart.find_by(user_id: current_user.id)
     @total = 0
     @cart.join_table_cart_items.each do |item|

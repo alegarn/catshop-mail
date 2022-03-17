@@ -1,4 +1,5 @@
 #destroy all seed before db:seed
+Category.destroy_all
 User.destroy_all
 Cart.destroy_all
 Item.destroy_all
@@ -10,7 +11,7 @@ JoinTableItemOrder.destroy_all
 
 #Create 5 categories
 5.times do |t|
-   category = Category.create(breed: Faker::Creature::Cat.breed );
+  category = Category.create(breed: Faker::Creature::Cat.breed );
 end
 
 
@@ -22,17 +23,30 @@ end
     price: 19.99,
     image_url: "https://images.theconversation.com/files/443350/original/file-20220131-15-1ndq1m6.jpg",
     category_id: Category.all.sample.id
-  );
-end
+    );
+  end
 
-#Create 10 users
-1.times do |t|
+  #Create 1 admin
+
   user = User.create!(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    password: Faker::Lorem.sentence,
-    adress: Faker::Address.street_address,
+    first_name: "The",
+    last_name: "Adminisatator",
+    password: "azerty",
+    email: "admin@yopmail.com",
     zipcode: Faker::Address.zip_code,
-    email: "email#{t}@yopmail.com"
-  );
-end
+    is_admin: true,
+    );
+
+
+
+    #Create 10 users
+    10.times do |t|
+      user = User.create!(
+        first_name: Faker::Name.first_name,
+        last_name: Faker::Name.last_name,
+        password: Faker::Lorem.sentence,
+        adress: Faker::Address.street_address,
+        zipcode: Faker::Address.zip_code,
+        email: "email#{t}@yopmail.com"
+        );
+      end

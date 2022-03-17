@@ -1,0 +1,8 @@
+ <%= @user.first_name %>
+==========================================================
+
+
+Ordered: <% @order.items.each do |item| %>
+- <%= item.title %>
+<% end %>
+- Paid <%= @order.total %> EUR.

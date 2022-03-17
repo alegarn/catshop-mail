@@ -24,4 +24,12 @@ class UserMailer < ApplicationMailer
     @url = 'https://catshop-io.herokuapp.com/'
     mail(to: @user.email, subject: 'Order on CatShop')
   end
+
+  #each file to update
+  #app/mailers/user_mailer.rb
+  #app/models/join_table_item_order.rb
+  #app/models/order.rb
+  #app/views/user_mailer/email_image.html.erb with .text
+  #app/views/user_mailer/email_order.html.erb with .text
+
 end
