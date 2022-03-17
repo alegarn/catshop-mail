@@ -15,4 +15,13 @@ class UserMailer < ApplicationMailer
     @url = 'https://catshop-io.herokuapp.com/'
     mail(to: @user.email, subject: 'Order on CatShop')
   end
+
+  def email_image(joinorder)
+    @order = joinorder
+    @user = joinorder.order.user
+    @item = joinorder.item
+    @image_url = joinorder.item.image_url
+    @url = 'https://catshop-io.herokuapp.com/'
+    mail(to: @user.email, subject: 'Order on CatShop')
+  end
 end
