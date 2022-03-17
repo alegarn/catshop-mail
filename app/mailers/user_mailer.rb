@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
 
-  default from: 'no-reply@catshop-io.fr'
+  default from: 'reygner0224@gmail.com'
 
 
   def welcome_email(user)
