@@ -6,7 +6,7 @@ You are on catshop-io.fr and that's your order :
 You ordered: <% @order.items.each do |item| %>
 - <%= item.title %>
 <% end %>
-- You paid <%= @amount %> EUR.
+- You paid <%= @order.total %> EUR.
 
 You can connect on: <%= @url %>.
 

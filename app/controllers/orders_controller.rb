@@ -41,7 +41,8 @@ class OrdersController < ApplicationController
   else
 
     order = Order.new(
-      'user_id' => current_user.id
+      'user_id' => current_user.id,
+      'total' => @total
     )
 
     order.save
